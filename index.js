@@ -17,14 +17,9 @@ restService.post("/echo", function(req, res) {
   var speech =
     req.body.queryResult &&
     req.body.queryResult.parameters &&
-    req.body.queryResult.parameters.echoText
-      ? req.body.queryResult.parameters.echoText
-      : "Seems like some problem. Speak again.";
+    req.body.queryResult.parameters.echoText ? req.body.queryResult.parameters.echoText : "Seems like some problem. Speak again.";
   return res.json({
-    fulfillmentText: speech,
-    speech: speech,
-    displayText: speech,
-    source: "webhook-echo-sample"
+    fulfillmentText: speech
   });
 });
 
@@ -115,6 +110,7 @@ restService.post("/audio", function(req, res) {
       break;
   }
   return res.json({
+	fulfillmentText: speech,
     speech: speech,
     displayText: speech,
     source: "webhook-echo-sample"
@@ -187,6 +183,7 @@ restService.post("/slack-test", function(req, res) {
     ]
   };
   return res.json({
+    fulfillmentText: "speech",
     speech: "speech",
     displayText: "speech",
     source: "webhook-echo-sample",
